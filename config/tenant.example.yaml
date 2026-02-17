@@ -1,0 +1,88 @@
+tenant_name: sample-tenant
+timezone: America/Chicago
+graphql_endpoint: https://graphql.fast-weigh.com/
+api_key_env: FASTWEIGH_API_KEY
+timeout_seconds: 45
+page_size: 500
+max_pages: 2000
+sync_window_days: 1
+warehouse_path: data/ops_intelligence.duckdb
+output_dir: output
+shared_drive_path: null
+
+alerts:
+  yard_time_minutes: 75
+  load_variance_percent: 5.0
+  late_delivery_minutes: 30
+  ar_overdue_amount: 10000.0
+
+email:
+  enabled: false
+  smtp_host: smtp.office365.com
+  smtp_port: 587
+  sender: reports@example.com
+  recipients:
+    - ops@example.com
+  username_env: SMTP_USERNAME
+  password_env: SMTP_PASSWORD
+
+webhook:
+  enabled: false
+  url: ""
+  bearer_token_env: null
+
+entities:
+  tickets:
+    query_file: queries/tickets.graphql
+    root_path: data.tickets.nodes
+    page_info_path: data.tickets.pageInfo
+    first_variable: first
+    after_variable: after
+    updated_after_variable: updatedAfter
+    updated_before_variable: updatedBefore
+    updated_at_field: lastUpdatedAt
+  orders:
+    query_file: queries/orders.graphql
+    root_path: data.orders.nodes
+    page_info_path: data.orders.pageInfo
+    first_variable: first
+    after_variable: after
+    updated_after_variable: updatedAfter
+    updated_before_variable: updatedBefore
+    updated_at_field: lastUpdatedAt
+  dispatch_events:
+    query_file: queries/dispatch_events.graphql
+    root_path: data.dispatchEvents.nodes
+    page_info_path: data.dispatchEvents.pageInfo
+    first_variable: first
+    after_variable: after
+    updated_after_variable: updatedAfter
+    updated_before_variable: updatedBefore
+    updated_at_field: lastUpdatedAt
+  customers:
+    query_file: queries/customers.graphql
+    root_path: data.customers.nodes
+    page_info_path: data.customers.pageInfo
+    first_variable: first
+    after_variable: after
+    updated_after_variable: updatedAfter
+    updated_before_variable: updatedBefore
+    updated_at_field: lastUpdatedAt
+  invoices:
+    query_file: queries/invoices.graphql
+    root_path: data.invoices.nodes
+    page_info_path: data.invoices.pageInfo
+    first_variable: first
+    after_variable: after
+    updated_after_variable: updatedAfter
+    updated_before_variable: updatedBefore
+    updated_at_field: lastUpdatedAt
+  hauler_pay:
+    query_file: queries/hauler_pay.graphql
+    root_path: data.haulerPay.nodes
+    page_info_path: data.haulerPay.pageInfo
+    first_variable: first
+    after_variable: after
+    updated_after_variable: updatedAfter
+    updated_before_variable: updatedBefore
+    updated_at_field: lastUpdatedAt

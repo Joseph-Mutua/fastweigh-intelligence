@@ -1,0 +1,21 @@
+query Customers($first: Int!, $after: String, $updatedAfter: DateTime, $updatedBefore: DateTime) {
+  customers(
+    first: $first
+    after: $after
+    filter: { lastUpdatedAt: { gte: $updatedAfter, lte: $updatedBefore } }
+  ) {
+    nodes {
+      id
+      customerId
+      name
+      customerName
+      segment
+      region
+      lastUpdatedAt
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

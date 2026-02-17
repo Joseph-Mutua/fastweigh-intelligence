@@ -1,0 +1,34 @@
+query Tickets($first: Int!, $after: String, $updatedAfter: DateTime, $updatedBefore: DateTime) {
+  tickets(
+    first: $first
+    after: $after
+    filter: { lastUpdatedAt: { gte: $updatedAfter, lte: $updatedBefore } }
+  ) {
+    nodes {
+      id
+      ticketId
+      orderId
+      customerId
+      locationId
+      laneId
+      productId
+      productName
+      unitOfMeasure
+      targetWeight
+      netWeight
+      checkInTimestamp
+      loadedTimestamp
+      ticketTimestamp
+      dispatchAssignedTimestamp
+      podTimestamp
+      truckId
+      haulerId
+      status
+      lastUpdatedAt
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

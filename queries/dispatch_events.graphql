@@ -1,0 +1,24 @@
+query DispatchEvents($first: Int!, $after: String, $updatedAfter: DateTime, $updatedBefore: DateTime) {
+  dispatchEvents(
+    first: $first
+    after: $after
+    filter: { lastUpdatedAt: { gte: $updatedAfter, lte: $updatedBefore } }
+  ) {
+    nodes {
+      id
+      eventId
+      ticketId
+      truckId
+      haulerId
+      eventType
+      eventTimestamp
+      latitude
+      longitude
+      lastUpdatedAt
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

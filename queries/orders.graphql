@@ -1,0 +1,22 @@
+query Orders($first: Int!, $after: String, $updatedAfter: DateTime, $updatedBefore: DateTime) {
+  orders(
+    first: $first
+    after: $after
+    filter: { lastUpdatedAt: { gte: $updatedAfter, lte: $updatedBefore } }
+  ) {
+    nodes {
+      id
+      orderId
+      jobId
+      phaseId
+      customerId
+      status
+      scheduledDate
+      lastUpdatedAt
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

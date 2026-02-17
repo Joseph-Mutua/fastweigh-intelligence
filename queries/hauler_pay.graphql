@@ -1,0 +1,22 @@
+query HaulerPay($first: Int!, $after: String, $updatedAfter: DateTime, $updatedBefore: DateTime) {
+  haulerPay(
+    first: $first
+    after: $after
+    filter: { lastUpdatedAt: { gte: $updatedAfter, lte: $updatedBefore } }
+  ) {
+    nodes {
+      id
+      payItemId
+      haulerId
+      ticketId
+      expectedAmount
+      paidAmount
+      payDate
+      lastUpdatedAt
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

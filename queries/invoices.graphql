@@ -1,0 +1,23 @@
+query Invoices($first: Int!, $after: String, $updatedAfter: DateTime, $updatedBefore: DateTime) {
+  invoices(
+    first: $first
+    after: $after
+    filter: { lastUpdatedAt: { gte: $updatedAfter, lte: $updatedBefore } }
+  ) {
+    nodes {
+      id
+      invoiceId
+      customerId
+      invoiceDate
+      dueDate
+      amount
+      openBalance
+      status
+      lastUpdatedAt
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

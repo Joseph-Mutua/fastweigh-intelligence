@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  ops-intel:
+    build: .
+    environment:
+      FASTWEIGH_API_KEY: ${FASTWEIGH_API_KEY}
+      FASTWEIGH_TENANT_CONFIG: ${FASTWEIGH_TENANT_CONFIG:-config/tenant.example.yaml}
+      SMTP_USERNAME: ${SMTP_USERNAME:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+    volumes:
+      - ./data:/app/data
+      - ./output:/app/output
+    command: ["ops-intel", "pipeline"]
