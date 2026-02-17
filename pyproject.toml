@@ -28,8 +28,6 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   "mypy>=1.11.2",
-  "pytest>=8.3.3",
-  "pytest-cov>=5.0.0",
   "ruff>=0.6.9"
 ]
 
@@ -38,10 +36,6 @@ ops-intel = "ops_intelligence.cli:app"
 
 [tool.setuptools]
 packages = ["ops_intelligence", "ops_intelligence.graphql", "ops_intelligence.extraction", "ops_intelligence.warehouse", "ops_intelligence.dashboard", "ops_intelligence.alerts", "ops_intelligence.reports", "ops_intelligence.scheduler"]
-
-[tool.pytest.ini_options]
-addopts = "-q"
-testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 100

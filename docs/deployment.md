@@ -28,6 +28,6 @@ Image included as `Dockerfile` in repository root.
 
 ## CI/CD expectations
 
-- Run unit tests and lint checks on PR
+- Run lint checks on PR
 - Run schema guard in protected pipeline where API key is available
-- Promote only when schema compatibility and tests pass
+- Promote only when schema compatibility and lint checks pass

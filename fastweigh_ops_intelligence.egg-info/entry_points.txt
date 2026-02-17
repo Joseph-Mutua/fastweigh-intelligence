@@ -1,2 +1,0 @@
-[console_scripts]
-ops-intel = ops_intelligence.cli:app

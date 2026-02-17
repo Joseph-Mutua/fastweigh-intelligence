@@ -1,31 +1,31 @@
 # Fast-Weigh Operations Intelligence Pack
 
-Reference implementation for **Project 2: GraphQL V2 -> KPI Warehouse -> Dashboards + Alerts**.
+## What it does
 
-## What this delivers
+- Extracts Fast-Weigh operational data via GraphQL V2 on a schedule.
+- Models a KPI layer for yard throughput, in-yard time, dispatch on-time performance, and AR aging.
+- Ships dashboards and alerting templates.
+
+## Why it reduces support
+
+- Fewer "how do I report X?" tickets.
+- Fewer one-off report customizations.
+- Customers can self-serve KPIs using a standard model.
+
+## Why it increases adoption
+
+- Clear ROI quickly after onboarding.
+- Add-on modules (Dispatch, In-Yard, Billing tools) become more valuable because impact is measurable.
+
+## Technical capabilities
 
 - GraphQL V2 extraction with bearer auth and cursor pagination
 - Incremental sync by date windows + per-entity state tracking
 - Schema guard (introspection snapshot + breaking-change detection)
-- Warehouse layers:
-  - `bronze`: raw event records
-  - `silver`: normalized operational entities
-  - `gold`: KPI marts for plant, dispatch, AR, and hauler pay
-- Streamlit dashboards:
-  - Plant Ops
-  - Dispatch
-  - Billing/AR
-  - Hauler Productivity
-- Scheduled outputs:
-  - CSV exports
-  - shared-drive copy
-  - optional email/webhook distribution
-- Alert engine:
-  - yard congestion
-  - load variance
-  - late deliveries
-  - AR aging risk
-- Docker packaging + CI + tests
+- Warehouse layers: `bronze` (raw), `silver` (normalized), `gold` (KPI marts)
+- Scheduled outputs: CSV exports, shared-drive copy, optional email/webhook distribution
+- Alert engine: yard congestion, load variance, late deliveries, AR aging risk
+- Docker packaging + CI
 
 ## Architecture
 
@@ -92,8 +92,6 @@ docs/
   insomnia-guide.md
   deployment.md
   runbook.md
-tests/
-  test_*.py
 ```
 
 ## Quick start
@@ -116,17 +114,35 @@ $env:FASTWEIGH_TENANT_CONFIG = "config/tenant.example.yaml"
 
 3. Review and adjust query files in `queries/` to match your GraphQL V2 schema naming.
 
-4. Run full pipeline.
+Run full pipeline:
 
 ```powershell
 ops-intel pipeline
 ```
 
-5. Launch dashboard.
+4. Launch dashboard.
 
 ```powershell
 ops-intel dashboard
 ```
+
+## Dashboard screenshots
+
+### Plant Ops
+
+![Plant Ops Dashboard](assets/Fast-Weigh%20Operations%20Intelligence%20-%20Plant%20Ops.png)
+
+### Dispatch
+
+![Dispatch Dashboard](assets/Fast-Weigh%20Operations%20Intelligence%20-%20Dispatch.png)
+
+### Billing/AR
+
+![Billing Dashboard](assets/Fast-Weigh%20Operations%20Intelligence%20-%20Billing.png)
+
+### Hauler Productivity
+
+![Hauler Productivity Dashboard](assets/Fast-Weigh%20Operations%20Intelligence%20-%20Hauler%20Productivity.png)
 
 ## CLI commands
 
@@ -167,7 +183,6 @@ docker run --rm -e FASTWEIGH_API_KEY=<KEY> -e FASTWEIGH_TENANT_CONFIG=config/ten
 ## Validation
 
 ```powershell
-pytest
 ruff check .
 ```
 
